@@ -279,17 +279,6 @@ RC BTLeafNode::setNextNodePtr(PageId pid)
   return 0;
 }
 
-void BTLeafNode::print()
-{
-  char* temp=buffer;
-  for(int i=0; i<getKeyCount(); i++){
-    int tempInt;
-    memcpy(&tempInt,temp,sizeof(int));
-    cout<<"key: "<<tempInt<<endl;
-    temp += L_PAIR_SIZE;
-  }
-}
-
 //NonLeafNode empieza
 
 /*
@@ -586,19 +575,5 @@ RC BTNonLeafNode::initializeRoot(PageId pid1, int key, PageId pid2)
   memcpy(buffer+sizeof(int)+sizeof(PageId)+sizeof(int),&pid2,sizeof(PageId));
 
   return 0;
-}
-
-void BTNonLeafNode::print()
-{
-  return;
-  char* temp = buffer;
-  int keyss = getKeyCount();
-  for(int i=0; i<1024; i+=sizeof(int)){
-    int tempInt;
-    memcpy(&tempInt,temp,sizeof(int));
-    cout<<tempInt<<" ";
-    temp += sizeof(int);
-  }
-  cout<<endl;
 }
 
